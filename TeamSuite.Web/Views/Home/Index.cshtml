@@ -2,7 +2,353 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Dashboard 1</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard 1</li>
+            </ol>
+            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+        </div>
+    </div>
 </div>
+
+<div class="card-group">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3><i class="icon-screen-desktop"></i></h3>
+                            <p class="text-muted">MYNEW CLIENTS</p>
+                        </div>
+                        <div class="ml-auto">
+                            <h2 class="counter text-primary">23</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3><i class="icon-note"></i></h3>
+                            <p class="text-muted">NEW PROJECTS</p>
+                        </div>
+                        <div class="ml-auto">
+                            <h2 class="counter text-cyan">169</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-cyan" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3><i class="icon-doc"></i></h3>
+                            <p class="text-muted">NEW INVOICES</p>
+                        </div>
+                        <div class="ml-auto">
+                            <h2 class="counter text-purple">157</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-purple" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3><i class="icon-bag"></i></h3>
+                            <p class="text-muted">All PROJECTS</p>
+                        </div>
+                        <div class="ml-auto">
+                            <h2 class="counter text-success">431</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-8 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex m-b-40 align-items-center no-block">
+                    <h5 class="card-title ">Church Attendance</h5>
+                
+                </div>
+                <div id="morris-area-chart" style="height: 340px;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <div class="col-lg-4 col-md-12">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-md-12">
+                <div class="card bg-cyan text-white">
+                    <div class="card-body ">
+                        <div class="row weather">
+                            <div class="col-6 m-t-40">
+                                <h3>&nbsp;</h3>
+                                <div class="display-4">73<sup>°F</sup></div>
+                                <p class="text-white">AHMEDABAD, INDIA</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <h1 class="m-b-"><i class="wi wi-day-cloudy-high"></i></h1>
+                                <b class="text-white">SUNNEY DAY</b>
+                                <p class="op-5">April 14</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-12">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div id="myCarouse2" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br />laugh at the moment</h4>
+                                    <div class="d-flex no-block">
+                                        <span><img src="~/dist/images/user.jpg" alt="user" width="50" class="img-circle"></span>
+                                        <span class="m-l-10">
+                                            <h4 class="text-white m-b-0">Govinda</h4>
+                                            <p class="text-white">Actor</p>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br />laugh at the moment</h4>
+                                    <div class="d-flex no-block">
+                                        <span><img src="~/dist/images/user.jpg" alt="user" width="50" class="img-circle"></span>
+                                        <span class="m-l-10">
+                                            <h4 class="text-white m-b-0">Govinda</h4>
+                                            <p class="text-white">Actor</p>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br />laugh at the moment</h4>
+                                    <div class="d-flex no-block">
+                                        <span><img src="~/dist/images/user.jpg" alt="user" width="50" class="img-circle"></span>
+                                        <span class="m-l-10">
+                                            <h4 class="text-white m-b-0">Govinda</h4>
+                                            <p class="text-white">Actor</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div>
+                        <h5 class="card-title">Upcoming Celebrations</h5>                      
+                        <h6 class="card-subtitle">Birthdays, Wedding Anniversaries</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- .modal for add task -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Task</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>Task name</label>
+                                    <input type="text" class="form-control" placeholder="Enter Task Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Assign to</label>
+                                    <select class="custom-select form-control pull-right">
+                                        <option selected="">Sachin</option>
+                                        <option value="1">Sehwag</option>
+                                        <option value="2">Pritam</option>
+                                        <option value="3">Alia</option>
+                                        <option value="4">Varun</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <div class="table-responsive">
+                <table class="table table-hover no-wrap">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>NAME</th>
+                            <th>STATUS</th>
+                            <th>DATE</th>
+                            <th>PRICE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td class="txt-oflo">Elite admin</td>
+                            <td><span class="badge badge-success badge-pill">sale</span> </td>
+                            <td class="txt-oflo">April 18, 2017</td>
+                            <td><span class="text-success">$24</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">2</td>
+                            <td class="txt-oflo">Real Homes</td>
+                            <td><span class="badge badge-info badge-pill">extended</span></td>
+                            <td class="txt-oflo">April 19, 2017</td>
+                            <td><span class="text-info">$1250</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">3</td>
+                            <td class="txt-oflo">Ample Admin</td>
+                            <td><span class="badge badge-info badge-pill">extended</span></td>
+                            <td class="txt-oflo">April 19, 2017</td>
+                            <td><span class="text-info">$1250</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">4</td>
+                            <td class="txt-oflo">Medical Pro</td>
+                            <td><span class="badge badge-danger badge-pill">tax</span></td>
+                            <td class="txt-oflo">April 20, 2017</td>
+                            <td><span class="text-danger">-$24</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">5</td>
+                            <td class="txt-oflo">Hosting press html</td>
+                            <td><span class="badge badge-success badge-pill">sale</span></td>
+                            <td class="txt-oflo">April 21, 2017</td>
+                            <td><span class="text-success">$24</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">6</td>
+                            <td class="txt-oflo">Digital Agency PSD</td>
+                            <td><span class="badge badge-success badge-pill">sale</span> </td>
+                            <td class="txt-oflo">April 23, 2017</td>
+                            <td><span class="text-danger">-$14</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">7</td>
+                            <td class="txt-oflo">Helping Hands</td>
+                            <td><span class="badge badge-warning badge-pill">member</span></td>
+                            <td class="txt-oflo">April 22, 2017</td>
+                            <td><span class="text-success">$64</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">8</td>
+                            <td class="txt-oflo">Ample Admin</td>
+                            <td><span class="badge badge-info badge-pill">extended</span></td>
+                            <td class="txt-oflo">April 19, 2017</td>
+                            <td><span class="text-info">$1250</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="right-sidebar">
+    <div class="slimscrollright">
+        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+        <div class="r-panel-body">
+            <ul id="themecolors" class="m-t-20">
+                <li><b>With Light sidebar</b></li>
+                <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme working">1</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme">4</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
+                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
+                <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->          
