@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TeamSuite.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,7 +60,7 @@ namespace TeamSuite.Repository.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Status = table.Column<Guid>(type: "uuid", nullable: false)
+                    Status = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,6 +187,25 @@ namespace TeamSuite.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Location",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SiteId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Location", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Location_Site_SiteId",
+                        column: x => x.SiteId,
+                        principalTable: "Site",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Members",
                 columns: table => new
                 {
@@ -253,12 +272,23 @@ namespace TeamSuite.Repository.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "CheckListItems",
+                columns: new[] { "Id", "Description", "Name", "Status" },
+                values: new object[] { new Guid("a1dda148-d324-4231-b578-f238d69fcfb8"), null, "Switch on Server", true });
+
+            migrationBuilder.InsertData(
                 table: "Site",
                 columns: new[] { "Id", "Address", "Name" },
+                values: new object[] { new Guid("b6dda148-d324-4231-b578-f238d69fcfb8"), "Wumba, Apo", "Graceland" });
+
+            migrationBuilder.InsertData(
+                table: "Location",
+                columns: new[] { "Id", "Name", "SiteId" },
                 values: new object[,]
                 {
-                    { new Guid("362c80a7-b5de-4b20-a762-bd704c2279f1"), "Wumba, Apo", "Graceland" },
-                    { new Guid("8ab04f0d-b807-4c2f-8b04-273920ef2dff"), "Afri Hotel, CBD", "Zoo Arena" }
+                    { new Guid("03164e2a-7a90-11ee-b962-0242ac120002"), "Server Room", new Guid("b6dda148-d324-4231-b578-f238d69fcfb8") },
+                    { new Guid("13164e2a-7a90-11ee-b962-0242ac120002"), "Tarmac", new Guid("b6dda148-d324-4231-b578-f238d69fcfb8") },
+                    { new Guid("23164e2a-7a90-11ee-b962-0242ac120002"), "IT Desk", new Guid("b6dda148-d324-4231-b578-f238d69fcfb8") }
                 });
 
             migrationBuilder.CreateIndex(
@@ -299,6 +329,11 @@ namespace TeamSuite.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Location_SiteId",
+                table: "Location",
+                column: "SiteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Members_SiteId",
                 table: "Members",
                 column: "SiteId");
@@ -334,6 +369,9 @@ namespace TeamSuite.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "CheckListItems");
+
+            migrationBuilder.DropTable(
+                name: "Location");
 
             migrationBuilder.DropTable(
                 name: "Members");

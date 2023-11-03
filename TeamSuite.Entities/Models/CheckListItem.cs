@@ -15,6 +15,6 @@ namespace TeamSuite.Entities.Models
         public string Name { get; set; } = default!;
         public string? Description { get; set; }
         //public Guid SeverityLevel { get; set; }
-        public Guid Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

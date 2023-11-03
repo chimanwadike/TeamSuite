@@ -33,7 +33,7 @@ if (builder.Environment.IsDevelopment())
 var app = builder.Build();
 
 //run migrations
-DoFullMigrationAsync();
+await DoFullMigrationAsync();
 
 
 // Configure the HTTP request pipeline.

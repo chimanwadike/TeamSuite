@@ -21,5 +21,7 @@ public class RepositoryContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new SiteConfiguration());
+        modelBuilder.ApplyConfiguration(new LocationConfiguration());
+        modelBuilder.ApplyConfiguration(new CheckListItemConfiguration());
     }
 }

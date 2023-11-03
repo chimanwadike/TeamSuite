@@ -12,8 +12,8 @@ using TeamSuite.Repository;
 namespace TeamSuite.Repository.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20231031162216_Initial")]
-    partial class Initial
+    [Migration("20231103215232_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,12 +238,60 @@ namespace TeamSuite.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("Status")
-                        .HasColumnType("uuid");
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
                     b.ToTable("CheckListItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a1dda148-d324-4231-b578-f238d69fcfb8"),
+                            Name = "Switch on Server",
+                            Status = true
+                        });
+                });
+
+            modelBuilder.Entity("TeamSuite.Entities.Models.Location", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SiteId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.ToTable("Location");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("03164e2a-7a90-11ee-b962-0242ac120002"),
+                            Name = "Server Room",
+                            SiteId = new Guid("b6dda148-d324-4231-b578-f238d69fcfb8")
+                        },
+                        new
+                        {
+                            Id = new Guid("13164e2a-7a90-11ee-b962-0242ac120002"),
+                            Name = "Tarmac",
+                            SiteId = new Guid("b6dda148-d324-4231-b578-f238d69fcfb8")
+                        },
+                        new
+                        {
+                            Id = new Guid("23164e2a-7a90-11ee-b962-0242ac120002"),
+                            Name = "IT Desk",
+                            SiteId = new Guid("b6dda148-d324-4231-b578-f238d69fcfb8")
+                        });
                 });
 
             modelBuilder.Entity("TeamSuite.Entities.Models.Member", b =>
@@ -309,15 +357,9 @@ namespace TeamSuite.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("362c80a7-b5de-4b20-a762-bd704c2279f1"),
+                            Id = new Guid("b6dda148-d324-4231-b578-f238d69fcfb8"),
                             Address = "Wumba, Apo",
                             Name = "Graceland"
-                        },
-                        new
-                        {
-                            Id = new Guid("8ab04f0d-b807-4c2f-8b04-273920ef2dff"),
-                            Address = "Afri Hotel, CBD",
-                            Name = "Zoo Arena"
                         });
                 });
 
@@ -418,6 +460,17 @@ namespace TeamSuite.Repository.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TeamSuite.Entities.Models.Location", b =>
+                {
+                    b.HasOne("TeamSuite.Entities.Models.Site", "Site")
+                        .WithMany()
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Site");
                 });
 
             modelBuilder.Entity("TeamSuite.Entities.Models.Member", b =>

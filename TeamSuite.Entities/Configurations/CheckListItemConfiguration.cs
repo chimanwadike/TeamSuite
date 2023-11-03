@@ -9,13 +9,11 @@ using TeamSuite.Entities.Models;
 
 namespace TeamSuite.Entities.Configurations
 {
-    public class SiteConfiguration : IEntityTypeConfiguration<Site>
+    public class CheckListItemConfiguration : IEntityTypeConfiguration<CheckListItem>
     {
-        public void Configure(EntityTypeBuilder<Site> builder)
+        public void Configure(EntityTypeBuilder<CheckListItem> builder)
         {
-            builder.HasData(
-                new Site { Id = Guid.Parse("b6dda148-d324-4231-b578-f238d69fcfb8"), Name = "Graceland", Address = "Wumba, Apo" }
-                );
+            builder.HasData(new CheckListItem {Id = Guid.Parse("a1dda148-d324-4231-b578-f238d69fcfb8"), Name = "Switch on Server" });
         }
     }
 }
