@@ -6,6 +6,11 @@ using TeamSuite.Web.Extensions;
 using TeamSuite.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("RepositoryContextConnection") ?? throw new InvalidOperationException("Connection string 'RepositoryContextConnection' not found.");
+
+//builder.Services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(connectionString));
+
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<RepositoryContext>();
 
 // Add services to the container.
 builder.Services.ConfigureDatabase(builder.Configuration);

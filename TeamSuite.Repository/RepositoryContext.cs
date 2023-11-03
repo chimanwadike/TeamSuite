@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 using TeamSuite.Entities.Configurations;
 using TeamSuite.Entities.Models;
 
-namespace TeamSuite.Repository
+namespace TeamSuite.Repository;
+
+public class RepositoryContext : IdentityDbContext
 {
-    public class RepositoryContext : IdentityDbContext
+    public RepositoryContext(DbContextOptions options) : base(options) { }
+
+    public DbSet<Member> Members { get; set; }
+    public DbSet<CheckListItem> CheckListItems { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public RepositoryContext(DbContextOptions options) : base(options) { }
-
-        public DbSet<Member> Members { get; set; }
-        public DbSet<CheckListItem> CheckListItems { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new SiteConfiguration());
-        }
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new SiteConfiguration());
     }
 }

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/dist/images/favicon.png">
+    <title>@ViewData["Title"] - TeamSuite</title>
+   
+    <link rel="stylesheet" href="~/dist/css/pages/login-register-lock.css" />
+    <link rel="stylesheet" href="~/dist/css/style.min.css" asp-append-version="true" />
+
+</head>
+
+<body class="skin-default card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Elite admin</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        @RenderBody()
+    </section>
+    <script src="~/dist/js/jquery-3.2.1.min.js"></script>
+    <script src="~/dist/js/popper.min.js"></script>
+    <script src="~/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".preloader").fadeOut();
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!--Custom JavaScript -->
+
+    
+</body>
+
+</html>
