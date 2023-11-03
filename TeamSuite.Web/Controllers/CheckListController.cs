@@ -2,7 +2,7 @@
 
 namespace TeamSuite.Web.Controllers
 {
-    public class TodoController : Controller
+    public class CheckListController : Controller
     {
         public IActionResult Index()
         {
