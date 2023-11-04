@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TeamSuite.Entities\TeamSuite.Entities.csproj" />
+    <ProjectReference Include="..\TeamSuite.Shared\TeamSuite.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

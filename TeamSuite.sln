@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Entities", "TeamS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Repository", "TeamSuite.Repository\TeamSuite.Repository.csproj", "{10D0ACFF-63C8-42C1-B1FB-E5B8C771A668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSuite.Service", "TeamSuite.Service\TeamSuite.Service.csproj", "{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Service", "TeamSuite.Service\TeamSuite.Service.csproj", "{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSuite.Shared", "TeamSuite.Shared\TeamSuite.Shared.csproj", "{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

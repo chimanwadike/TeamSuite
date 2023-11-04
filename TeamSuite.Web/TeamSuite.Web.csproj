@@ -23,6 +23,7 @@
     <ProjectReference Include="..\TeamSuite.LoggerService\TeamSuite.LoggerService.csproj" />
     <ProjectReference Include="..\TeamSuite.Repository\TeamSuite.Repository.csproj" />
     <ProjectReference Include="..\TeamSuite.Service\TeamSuite.Service.csproj" />
+    <ProjectReference Include="..\TeamSuite.Shared\TeamSuite.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

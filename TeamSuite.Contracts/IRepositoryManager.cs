@@ -10,6 +10,8 @@ namespace TeamSuite.Contracts
     public interface IRepositoryManager
     {
         IMemberRepository MemberRepository { get; }
+        ICheckListRepository CheckListRepository { get; }
+        ICheckListReportRepository CheckListReportRepository { get; }
         void Save();
     }
 }

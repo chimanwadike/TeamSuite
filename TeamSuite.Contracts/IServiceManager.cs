@@ -10,5 +10,7 @@ namespace TeamSuite.Contracts
     public interface IServiceManager
     {
         IMemberService MemberService { get; }
+        ICheckListService CheckListService { get; }
+        ICheckListReportService CheckListReportService { get; }
     }
 }
