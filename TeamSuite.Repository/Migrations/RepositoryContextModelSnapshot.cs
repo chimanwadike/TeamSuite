@@ -248,7 +248,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("CheckList");
+                    b.ToTable("CheckLists");
 
                     b.HasData(
                         new
@@ -437,7 +437,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CheckListForm");
+                    b.ToTable("CheckListForms");
 
                     b.HasData(
                         new
@@ -597,6 +597,30 @@ namespace TeamSuite.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TeamSuite.Entities.Models.CheckListReport", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CheckListId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CompletedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("Status")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("TimeCompleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckListReports");
+                });
+
             modelBuilder.Entity("TeamSuite.Entities.Models.Location", b =>
                 {
                     b.Property<Guid>("Id")
@@ -614,7 +638,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasIndex("SiteId");
 
-                    b.ToTable("Location");
+                    b.ToTable("Locations");
 
                     b.HasData(
                         new
@@ -634,6 +658,51 @@ namespace TeamSuite.Repository.Migrations
                             Id = new Guid("23164e2a-7a90-11ee-b962-0242ac120002"),
                             Name = "IT Desk",
                             SiteId = new Guid("b6dda148-d324-4231-b578-f238d69fcfb8")
+                        });
+                });
+
+            modelBuilder.Entity("TeamSuite.Entities.Models.LookUp", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LookUps");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b4326a5a-6eea-4025-aa3e-43eb0a43a32e"),
+                            Category = "checklist_status",
+                            Name = "Pending",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("5c338fc7-8353-4e3d-ac92-7879d9ad9919"),
+                            Category = "checklist_status",
+                            Name = "Success",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("ac2be4df-6b1e-4bb8-88a1-393ffa018ead"),
+                            Category = "checklist_status",
+                            Name = "Failure",
+                            Order = 3
                         });
                 });
 
@@ -698,7 +767,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Site");
+                    b.ToTable("Sites");
 
                     b.HasData(
                         new
@@ -730,7 +799,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("SubTeam");
+                    b.ToTable("SubTeams");
                 });
 
             modelBuilder.Entity("TeamSuite.Entities.Models.Team", b =>
@@ -754,7 +823,7 @@ namespace TeamSuite.Repository.Migrations
 
                     b.HasIndex("SiteId");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
