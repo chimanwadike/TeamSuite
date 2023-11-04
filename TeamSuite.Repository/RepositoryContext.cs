@@ -23,5 +23,7 @@ public class RepositoryContext : IdentityDbContext
         modelBuilder.ApplyConfiguration(new SiteConfiguration());
         modelBuilder.ApplyConfiguration(new LocationConfiguration());
         modelBuilder.ApplyConfiguration(new CheckListItemConfiguration());
+        modelBuilder.ApplyConfiguration(new CheckListFormConfiguration());
+        modelBuilder.ApplyConfiguration(new CheckListConfiguration());
     }
 }
