@@ -12,8 +12,8 @@ using TeamSuite.Repository;
 namespace TeamSuite.Repository.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20231104202443_migrations_reinitialized")]
-    partial class migrations_reinitialized
+    [Migration("20231105152757_Initial_DB_with_Seed")]
+    partial class Initial_DB_with_Seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -610,7 +610,6 @@ namespace TeamSuite.Repository.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("CompletedBy")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("Status")
@@ -620,6 +619,8 @@ namespace TeamSuite.Repository.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CheckListId");
 
                     b.ToTable("CheckListReports");
                 });
@@ -688,21 +689,21 @@ namespace TeamSuite.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4326a5a-6eea-4025-aa3e-43eb0a43a32e"),
+                            Id = new Guid("25cf2e32-36fa-47fe-a272-6afc8bd95f5c"),
                             Category = "checklist_status",
                             Name = "Pending",
                             Order = 1
                         },
                         new
                         {
-                            Id = new Guid("5c338fc7-8353-4e3d-ac92-7879d9ad9919"),
+                            Id = new Guid("9bf75416-d543-4cff-8c94-10c73d0862f1"),
                             Category = "checklist_status",
                             Name = "Success",
                             Order = 2
                         },
                         new
                         {
-                            Id = new Guid("ac2be4df-6b1e-4bb8-88a1-393ffa018ead"),
+                            Id = new Guid("62ae3adb-0603-4274-aea0-62952c3065f7"),
                             Category = "checklist_status",
                             Name = "Failure",
                             Order = 3
@@ -905,6 +906,17 @@ namespace TeamSuite.Repository.Migrations
                     b.Navigation("checkListItem");
 
                     b.Navigation("location");
+                });
+
+            modelBuilder.Entity("TeamSuite.Entities.Models.CheckListReport", b =>
+                {
+                    b.HasOne("TeamSuite.Entities.Models.CheckList", "checkList")
+                        .WithMany()
+                        .HasForeignKey("CheckListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("checkList");
                 });
 
             modelBuilder.Entity("TeamSuite.Entities.Models.Location", b =>

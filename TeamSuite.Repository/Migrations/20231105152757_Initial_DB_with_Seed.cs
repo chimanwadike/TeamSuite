@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TeamSuite.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class migrations_reinitialized : Migration
+    public partial class Initial_DB_with_Seed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,38 +54,6 @@ namespace TeamSuite.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sites",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sites", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Locations",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    SiteId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Locations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Locations_Sites_SiteId",
-                        column: x => x.SiteId,
-                        principalTable: "Sites",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CheckListForms",
                 columns: table => new
                 {
@@ -113,54 +81,6 @@ namespace TeamSuite.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CheckLists",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CheckListItemId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CheckListFormId = table.Column<Guid>(type: "uuid", nullable: false),
-                    LocationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Order = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CheckLists", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CheckLists_CheckListForms_CheckListFormId",
-                        column: x => x.CheckListFormId,
-                        principalTable: "CheckListForms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CheckLists_CheckListItems_CheckListItemId",
-                        column: x => x.CheckListItemId,
-                        principalTable: "CheckListItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CheckLists_Locations_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Locations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CheckListReports",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CheckListId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Status = table.Column<Guid>(type: "uuid", nullable: false),
-                    CompletedBy = table.Column<string>(type: "text", nullable: false),
-                    TimeCompleted = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CheckListReports", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LookUps",
                 columns: table => new
                 {
@@ -172,6 +92,19 @@ namespace TeamSuite.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LookUps", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sites",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sites", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -280,6 +213,24 @@ namespace TeamSuite.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Locations",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SiteId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Locations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Locations_Sites_SiteId",
+                        column: x => x.SiteId,
+                        principalTable: "Sites",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Members",
@@ -326,7 +277,40 @@ namespace TeamSuite.Repository.Migrations
                         principalTable: "Sites",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });           
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CheckLists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CheckListItemId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CheckListFormId = table.Column<Guid>(type: "uuid", nullable: false),
+                    LocationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Order = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CheckLists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CheckLists_CheckListForms_CheckListFormId",
+                        column: x => x.CheckListFormId,
+                        principalTable: "CheckListForms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CheckLists_CheckListItems_CheckListItemId",
+                        column: x => x.CheckListItemId,
+                        principalTable: "CheckListItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CheckLists_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "SubTeams",
@@ -344,6 +328,27 @@ namespace TeamSuite.Repository.Migrations
                         name: "FK_SubTeams_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CheckListReports",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CheckListId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Status = table.Column<Guid>(type: "uuid", nullable: false),
+                    CompletedBy = table.Column<string>(type: "text", nullable: true),
+                    TimeCompleted = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CheckListReports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CheckListReports_CheckLists_CheckListId",
+                        column: x => x.CheckListId,
+                        principalTable: "CheckLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -386,9 +391,9 @@ namespace TeamSuite.Repository.Migrations
                 columns: new[] { "Id", "Category", "Name", "Order" },
                 values: new object[,]
                 {
-                    { new Guid("5c338fc7-8353-4e3d-ac92-7879d9ad9919"), "checklist_status", "Success", 2 },
-                    { new Guid("ac2be4df-6b1e-4bb8-88a1-393ffa018ead"), "checklist_status", "Failure", 3 },
-                    { new Guid("b4326a5a-6eea-4025-aa3e-43eb0a43a32e"), "checklist_status", "Pending", 1 }
+                    { new Guid("25cf2e32-36fa-47fe-a272-6afc8bd95f5c"), "checklist_status", "Pending", 1 },
+                    { new Guid("62ae3adb-0603-4274-aea0-62952c3065f7"), "checklist_status", "Failure", 3 },
+                    { new Guid("9bf75416-d543-4cff-8c94-10c73d0862f1"), "checklist_status", "Success", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -472,6 +477,11 @@ namespace TeamSuite.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_CheckListReports_CheckListId",
+                table: "CheckListReports",
+                column: "CheckListId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CheckLists_CheckListFormId",
                 table: "CheckLists",
                 column: "CheckListFormId");
@@ -529,9 +539,6 @@ namespace TeamSuite.Repository.Migrations
                 name: "CheckListReports");
 
             migrationBuilder.DropTable(
-                name: "CheckLists");
-
-            migrationBuilder.DropTable(
                 name: "LookUps");
 
             migrationBuilder.DropTable(
@@ -547,6 +554,12 @@ namespace TeamSuite.Repository.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "CheckLists");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
+
+            migrationBuilder.DropTable(
                 name: "CheckListForms");
 
             migrationBuilder.DropTable(
@@ -554,9 +567,6 @@ namespace TeamSuite.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Locations");
-
-            migrationBuilder.DropTable(
-                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Sites");
