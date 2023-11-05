@@ -13,11 +13,11 @@ namespace TeamSuite.Entities.Models
         public Guid Status { get; set; } = Guid.Parse("25cf2e32-36fa-47fe-a272-6afc8bd95f5c");
         public string? CompletedBy { get; set; } = default!;
         public bool Completed { get; set; } = false;
-        public DateTime TimeCompleted { get; set; } = DateTime.Now;
-        public string TimeString { get => this.TimeCompleted.ToLongTimeString(); }
-        public string DateString { get => this.TimeCompleted.ToShortDateString(); }
-        public string WeekDay { get => this.TimeCompleted.DayOfWeek.ToString(); }
+        public DateTime TimeCompleted { get; set; } = DateTime.UtcNow;
+        public string TimeString { get => TimeCompleted.ToLongTimeString(); private set => _ = value; }
+        public string DateString { get => TimeCompleted.ToShortDateString(); private set => _ = value; }
+        public string WeekDay { get => TimeCompleted.DayOfWeek.ToString(); private set => _ = value; }
 
-        public CheckList checkList { get; set; }
+        public CheckList CheckList { get; set; }
     }
 }

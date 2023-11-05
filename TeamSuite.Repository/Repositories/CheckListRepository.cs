@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TeamSuite.Contracts.IRepositories;
@@ -16,13 +17,15 @@ namespace TeamSuite.Repository.Repositories
         {
         }
 
-        public IEnumerable<CheckListFormItemReadDTO> GetAllCheckList(bool trackChanges)
+        public IEnumerable<CheckList> GetAllCheckList(bool trackChanges)
         {
-            return FindAll(trackChanges)
-                .Include(_ => _.location)
-                .Include(_ => _.checkListItem)                
-                .Select(_ => new CheckListFormItemReadDTO { LocationId = _.LocationId.ToString(), LocationName = _.location.Name, CheckListId = _.Id.ToString(), CheckListItemName = _.checkListItem.Name, Status = "", Order = _.Order })
+            return FindAll(trackChanges)                                
                 .OrderBy(_ => _.Order);
+        }
+
+        public IEnumerable<CheckList> GetCheckListByCondition(bool trackChanges, Expression<Func<CheckList, bool>> expression)
+        {
+            return FindByCondition(expression, trackChanges).OrderBy(_ => _.Order);
         }
     }
 }

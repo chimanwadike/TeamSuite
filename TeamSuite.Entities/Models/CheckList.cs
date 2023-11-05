@@ -15,8 +15,8 @@ namespace TeamSuite.Entities.Models
 
         public int Order {  get; set; }
 
-        public CheckListItem checkListItem { get; set; }
+        public CheckListItem CheckListItem { get; set; }
         public CheckListForm CheckListForm { get; set; }
-        public Location location { get; set; }
+        public Location Location { get; set; }
     }
 }

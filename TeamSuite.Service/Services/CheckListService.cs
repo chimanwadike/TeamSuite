@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TeamSuite.Contracts;
 using TeamSuite.Contracts.IServices;
+using TeamSuite.Entities.Models;
 using TeamSuite.Shared.ReadDTOs;
 
 namespace TeamSuite.Service.Services
@@ -20,7 +21,7 @@ namespace TeamSuite.Service.Services
             _logger = logger;
         }
 
-        public IEnumerable<CheckListFormItemReadDTO> GetCheckList()
+        public IEnumerable<CheckList> GetCheckList()
         {
             return _repository.CheckListRepository
                  .GetAllCheckList(false);
