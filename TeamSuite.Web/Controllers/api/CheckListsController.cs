@@ -34,5 +34,12 @@ namespace TeamSuite.Web.Controllers.api
 
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateStatus(string id, [FromBody] string status)
+        {
+            _serviceManager.CheckListReportService.UpdateStatus(Guid.Parse(id), Guid.Parse(status));
+            return Ok(status);
+        }
     }
 }

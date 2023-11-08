@@ -13,5 +13,6 @@ namespace TeamSuite.Contracts.IRepositories
         IEnumerable<CheckListReport> GetAllCheckListReport(bool trackChanges);
         IEnumerable<CheckListReport> GetCheckListReportByCondition(bool trackChanges, Expression<Func<CheckListReport, bool>> expression);
         void Add(CheckListReport checkListReport);
+        void UpdateStatus(Guid id, Guid status);
     }
 }

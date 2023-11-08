@@ -82,5 +82,11 @@ namespace TeamSuite.Service.Services
 
             return checklistreportDtos;
         }
+
+        public void UpdateStatus(Guid id, Guid status)
+        {
+            _repository.CheckListReportRepository.UpdateStatus(id, status);
+            _repository.Save();
+        }
     }
 }

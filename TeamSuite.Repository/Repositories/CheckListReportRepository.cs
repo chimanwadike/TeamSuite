@@ -36,5 +36,15 @@ namespace TeamSuite.Repository.Repositories
                 .Include(_ => _.CheckList).ThenInclude(_ => _.Location)
                 .Include(_ => _.CheckList).ThenInclude(_ => _.CheckListItem);                
         }
+
+        public void UpdateStatus(Guid id, Guid status)
+        {
+            var checkListReport = FindByCondition(_ => _.Id == id, true).SingleOrDefault();
+            if (checkListReport != null)
+            {
+                checkListReport.Status = status;
+                checkListReport.Completed = true;
+            }            
+        }
     }
 }

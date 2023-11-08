@@ -82,8 +82,8 @@
                             <tr>
                                 <td>{{ row.item.action }}</td>
                                 <td>
-                                    <select v-model="row.item.status" class="form-control fixed-width-select">
-                                        <option v-for="option in status_options" :value="option.value">
+                                    <select v-model="row.item.status" class="form-control fixed-width-select" @@change="updateStatus($event, row.item)">
+                                        <option v-for="option in status_options" :value="option.value" >
                                             {{ option.text }}
                                         </option>
                                     </select>

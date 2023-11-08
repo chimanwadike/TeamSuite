@@ -13,5 +13,6 @@ namespace TeamSuite.Contracts.IServices
         public IEnumerable<CheckListReportReadDTO> GetCheckListReport();
         public IEnumerable<CheckListReportReadDTO> GetTodayCheckList(Guid checkListFormId);
         void GenerateTodayCheckList(Guid checkListFormId);
+        void UpdateStatus(Guid id, Guid status);
     }
 }
