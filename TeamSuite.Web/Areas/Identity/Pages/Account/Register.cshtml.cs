@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using TeamSuite.Entities.Models;
 using TeamSuite.Web.Models;
 
 namespace TeamSuite.Web.Areas.Identity.Pages.Account
