@@ -65,13 +65,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="~/dist/images/favicon.png">
     <title>TeamSuite</title>
-@*     <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet"> *@
-    <!--Toaster Popup message CSS -->
-@*     <link href="~/dist/css/custom/jquery.toast.css" rel="stylesheet"> *@
-    <!-- Custom CSS -->
+
+    @await RenderSectionAsync("Style", required: false)
     <link href="~/dist/css/style.min.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-@*      <link href="dist/css/pages/dashboard1.css" rel="stylesheet"> *@
 </head>
 
 <body class="skin-default fixed-layout">
@@ -108,9 +104,11 @@
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                            <img src="~/dist/images/logo-text.png" alt="homepage" class="dark-logo" />
+@*                             <img src="~/dist/images/logo-text.png" alt="homepage" class="dark-logo" /> *@
                          <!-- Light Logo text -->    
-                         <img src="~/dist/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                     @*     <img src="~/dist/images/logo-light-text.png" class="light-logo" alt="homepage" /> *@
+                     TeamSuite
+                     </span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -291,7 +289,7 @@
                         <!-- User Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user" class=""> <span class="hidden-md-down">User &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">                  
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
@@ -320,7 +318,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user-img" class="img-circle"><span class="hide-menu">Mark Jeckson</span></a>
+                        <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user-img" class="img-circle"><span class="hide-menu">Current User</span></a>
                             <ul aria-expanded="false" class="collapse">                      
                                 <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
@@ -333,9 +331,9 @@
                        
                         </li>
                         
-                        <li> <a class="waves-effect waves-dark" href="../documentation/documentation.html" aria-expanded="false"><i class="far fa-circle text-danger"></i><span class="hide-menu">Administration</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu">Log Out</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="../documentation/documentation.html" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu">Administration</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i class="far fa-circle text-danger"></i><span class="hide-menu">Log Out</span></a></li>
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -366,7 +364,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer">
-            © 2020 Eliteadmin by themedesigner.in
+            © 2023 Graceville Technical Team
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

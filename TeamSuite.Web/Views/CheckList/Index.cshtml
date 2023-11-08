@@ -2,108 +2,153 @@
     ViewData["Title"] = "Check Lists";
 }
 
-<div id="CheckListsComponent">
-    <div class="row page-titles">
-        <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Check Lists</h4>
+@section Style{
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+}
+<v-app>
+    <div id="CheckListsComponent">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor">Check Lists</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="card-title">Service Check Lists</h5>
-                            <h6 class="card-subtitle">Please click the + button to load form</h6>
-                        </div>
-                        <div class="ml-auto">
-                            <button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h5 class="card-title">Service Check Lists</h5>
+                                <h6 class="card-subtitle">Please click the + button to load form</h6>
+                            </div>
+                            <div class="ml-auto">
+                                <button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- .modal for add task -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Task</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    <!-- .modal for add task -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Task</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Task name</label>
+                                            <input type="text" class="form-control" placeholder="Enter Task Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Assign to</label>
+                                            <select class="custom-select form-control pull-right">
+                                                <option selected="">Sachin</option>
+                                                <option value="1">Sehwag</option>
+                                                <option value="2">Pritam</option>
+                                                <option value="3">Alia</option>
+                                                <option value="4">Varun</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label>Task name</label>
-                                        <input type="text" class="form-control" placeholder="Enter Task Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Assign to</label>
-                                        <select class="custom-select form-control pull-right">
-                                            <option selected="">Sachin</option>
-                                            <option value="1">Sehwag</option>
-                                            <option value="2">Pritam</option>
-                                            <option value="3">Alia</option>
-                                            <option value="4">Varun</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-                            </div>
+                            <!-- /.modal-content -->
                         </div>
-                        <!-- /.modal-content -->
+                        <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <div class="table-responsive">
-                    <table class="table table-hover no-wrap">
-                        <thead>
+                    <!-- /.modal -->
+                    <v-data-table :headers="headers"
+                                  :items="checklist"
+                                  group-by="location"
+                                  :items-per-page="50"
+                                  class="elevation-1">
+                        <template v-slot:group.header="{ group, headers, toggle, isOpen }">
+                            <td :colspan="headers.length">
+                                <v-btn @@click="toggle" small icon :ref="group" :data-open="isOpen">
+                                    <v-icon v-if="isOpen">mdi-chevron-up</v-icon>
+                                    <v-icon v-else>mdi-chevron-down</v-icon>
+                                </v-btn>
+                                {{ group }}
+                            </td>
+                        </template>
+                        <template v-slot:item="row">
                             <tr>
-                                <th class="text-center">#</th>
-                                <th>LOCATION</th>
-                                <th>ACTION</th>
-                                <th>STATUS</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="txt-oflo">Server Room</td>
-                                <td class="txt-oflo">Switch on Server</td>
+                                <td>{{ row.item.action }}</td>
                                 <td>
-                                    <div>
-                                        <select class="form-control">
-                                            <option>Pending</option>
-                                            <option>Completed</option>
-                                            <option>Failed</option>
-                                        </select>
-                                    </div>
+                                    <select v-model="row.item.status" class="form-control fixed-width-select">
+                                        <option v-for="option in status_options" :value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
                                 </td>
-                                <td><a href="" class="btn btn-small bg-primary"><span class="ti-save"></span></a> </td>
-                            </tr>                        
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5">
-                                    <button type="submit" class="btn btn-full bg-info">Save All <span class="ti-save"></span> </button>
-                                </td>
+                                <td>
+                                    <span class="badge badge-pill" v-bind:class="row.item.completed ? 'badge-success' : 'badge-warning'">
+                                        {{row.item.completed? 'submitted' : 'not submitted'}}
+                                    </span>
+                                </td>                            
                             </tr>
-                        </tfoot>
+
+                        </template>
+                    </v-data-table>
+
+                    @*                 <div class="table-responsive">
+                    <table class="table table-hover no-wrap">
+                    <thead>
+                    <tr>
+                    <th class="text-center">#</th>
+                    <th>LOCATION</th>
+                    <th>ACTION</th>
+                    <th>STATUS</th>
+                    <th></th>
+                    <th>Submitted</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="todo in checklist">
+                    <td class="text-center">1</td>
+                    <td class="txt-oflo">{{todo.location}}</td>
+                    <td class="txt-oflo">{{todo.action}}</td>
+                    <td>
+                    <div>
+                    <select class="form-control">
+                    <option>Pending</option>
+                    <option>Completed</option>
+                    <option>Failed</option>
+                    </select>
+                    </div>
+                    </td>
+                    <td><a href="" class="btn btn-small bg-primary"><span class="ti-check"></span></a> </td>
+                    <td> <span class="badge badge-pill" v-bind:class="todo.completed ? 'badge-success' : 'badge-warning'">
+                    {{todo.completed? 'submitted' : 'not submitted'}}
+                    </span></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                    <td colspan="6">
+                    <button type="submit" class="btn btn-full bg-info">Save All <span class="ti-check"></span> </button>
+                    </td>
+                    </tr>
+                    </tfoot>
                     </table>
+                    </div> *@
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
+</v-app>
 
 @section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="~/js/components/CheckListsComponent.js"></script>
 }
