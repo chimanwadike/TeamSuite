@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Repository", "Tea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Service", "TeamSuite.Service\TeamSuite.Service.csproj", "{6490AC99-4A4D-4BD9-B5C9-814FE4CEAE8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSuite.Shared", "TeamSuite.Shared\TeamSuite.Shared.csproj", "{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSuite.Shared", "TeamSuite.Shared\TeamSuite.Shared.csproj", "{1AD51DF4-4320-4255-BAE1-4469D6B01DCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5E2E235-68C5-4EF1-8657-A9232465DC65}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
