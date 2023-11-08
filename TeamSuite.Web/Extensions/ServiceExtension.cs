@@ -32,5 +32,8 @@ namespace TeamSuite.Web.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) => 
             services.AddScoped<IServiceManager, ServiceManager>();
+
+        public static void ConfigureMapper(this IServiceCollection services) =>
+            services.AddAutoMapper(typeof(Program));
     }
 }

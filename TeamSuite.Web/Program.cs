@@ -21,6 +21,8 @@ builder.Services.ConfigureRepositoryManager();
 
 builder.Services.ConfigureServiceManager();
 
+builder.Services.ConfigureMapper();
+
 builder.Services.AddControllersWithViews();
 
 var mvcBuilder = builder.Services.AddRazorPages();

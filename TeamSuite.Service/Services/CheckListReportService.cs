@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using TeamSuite.Contracts;
 using TeamSuite.Contracts.IRepositories;
 using TeamSuite.Contracts.IServices;
 using TeamSuite.Entities.Models;
+using TeamSuite.Shared.ReadDTOs;
 
 namespace TeamSuite.Service.Services
 {
@@ -14,11 +16,13 @@ namespace TeamSuite.Service.Services
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
-        public CheckListReportService(IRepositoryManager repository, ILoggerManager logger)
+        public CheckListReportService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
-            _logger = logger;            
+            _logger = logger;
+            _mapper = mapper;
         }
 
         public void GenerateTodayCheckList(Guid checkListFormId)
@@ -50,17 +54,19 @@ namespace TeamSuite.Service.Services
             _repository.Save();
         }
 
-        public IEnumerable<CheckListReport> GetCheckListReport()
+        public IEnumerable<CheckListReportReadDTO> GetCheckListReport()
         {
             IEnumerable<CheckListReport> checklistreports = _repository
                .CheckListReportRepository
-               .GetAllCheckListReport(false)
+               .GetAllCheckListReport(false).OrderBy(_ => _.CheckList.Order)
                .ToList();
 
-            return checklistreports;
+            var checklistreportDtos = _mapper.Map<IEnumerable<CheckListReportReadDTO>>(checklistreports);
+
+            return checklistreportDtos;
         }
 
-        public IEnumerable<CheckListReport> GetTodayCheckList(Guid checkListFormId)
+        public IEnumerable<CheckListReportReadDTO> GetTodayCheckList(Guid checkListFormId)
         {
             var today = DateTime.UtcNow.ToShortDateString();
 
@@ -68,9 +74,13 @@ namespace TeamSuite.Service.Services
                .CheckListReportRepository
                .GetCheckListReportByCondition(false, _ => _
                .CheckList.CheckListFormId == checkListFormId && _.DateString
-               .Equals(today)).ToList();
+               .Equals(today))
+               .OrderBy(_ => _.CheckList.Order)
+               .ToList();
 
-            return checklistreports;
+            var checklistreportDtos = _mapper.Map<IEnumerable<CheckListReportReadDTO>>(checklistreports);
+
+            return checklistreportDtos;
         }
     }
 }

@@ -9,15 +9,24 @@ namespace TeamSuite.Shared.ReadDTOs
     public class CheckListReportReadDTO
     {
         public Guid Id { get; set; }
-        public Guid CheckListId { get; set; }
-        public string LocationName { get; set; } = string.Empty;
-        public string CheckListItemName { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
+        public string Location { get; set; }
+        public string Action { get; set; }
+        public string Status { get; set; }
         public int Order { get; set; }
-        public string CompletedBy { get; set; } = default!;
-        public DateTime TimeCompleted { get; set; } = DateTime.Now;
-        public string TimeString { get => this.TimeCompleted.ToLongTimeString(); }
-        public string DateString { get => this.TimeCompleted.ToShortDateString(); }
-        public string WeekDay { get => this.TimeCompleted.DayOfWeek.ToString(); }
+        public bool Completed { get; set; }
+
+        public CheckListReportReadDTO(Guid Id, string Location, string Action, string Status, int Order)
+        {
+            this.Id = Id;
+            this.Location = Location;
+            this.Action = Action;
+            this.Status = Status;
+            this.Order = Order;
+        }
+
+        public CheckListReportReadDTO()
+        {
+            
+        }
     }
 }

@@ -16,5 +16,5 @@ Available migrations will be executed automatically when the application is run.
 
 # Running the Project
 CD into the solution directory and type <br>
-<code>dotnet run</code> from command line. 
+<code>dotnet run --project TeamSuite.Web</code> from command line. 
 You can also execute from within an IDE

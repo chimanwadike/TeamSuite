@@ -21,11 +21,8 @@ namespace TeamSuite.Web.Controllers.api
             var checklist = _serviceManager
                 .CheckListReportService
                 .GetTodayCheckList(Guid.Parse(checklistFormId));
-
-            //todo:: switch to automapper or mapster
-            var mapped_checklist = checklist.Select(_ => new { Id = _.Id, Location = _.CheckList.Location.Name, Action = _.CheckList.CheckListItem.Name, Status = _.Status, Completed = _.Completed, Order = _.CheckList.Order, Date = _.DateString }).OrderBy(_ => _.Order);
             
-            return Ok(mapped_checklist);
+            return Ok(checklist);
         }
 
         [HttpPost]
