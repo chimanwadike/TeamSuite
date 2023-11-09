@@ -50,7 +50,7 @@
                 </div>           
                 <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
-                        Don't have an account? <a href="pages-register.html" class="text-info m-l-5"><b>Sign Up</b></a>
+                        Don't have an account? <a asp-area="Identity" asp-page="/Account/Register" class="text-info m-l-5"><b>Sign Up</b></a>
                     </div>
                 </div>
             </form>
@@ -75,38 +75,7 @@
         </div>
     </div>
 </div>
-@* <div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-             
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-</div>
- *@
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script type="text/javascript">

@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
 @using TeamSuite.Entities.Models;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -7,7 +8,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
         <li class="nav-item dropdown u-pro">
-            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user" class=""> <span class="hidden-md-down">Chima &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user" class=""> <span class="hidden-md-down">Hi @(((ClaimsIdentity)User.Identity).FindFirst("FirstName")?.Value)! &nbsp;<i class="fa fa-angle-down"></i></span> </a>
             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                 <form class="form-inline dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-power-off"></i> Logout</button>

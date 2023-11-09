@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
 @using TeamSuite.Entities.Models;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -7,27 +8,13 @@
     @if (SignInManager.IsSignedIn(User))
     {
 
-@*         <li class="nav-item dropdown u-pro">
-            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user" class=""> <span class="hidden-md-down">@User.Identity?.Name &nbsp;<i class="fa fa-angle-down"></i></span> </a>
-            <div class="dropdown-menu dropdown-menu-right animated flipInY">
-              
-                <div class="dropdown-divider"></div>
-              
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-              
-            </div>
-        </li> *@
-
         <li class="user-pro">
-            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user-img" class="img-circle"><span class="hide-menu">@User.Identity?.Name</span></a>
+            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user-img" class="img-circle"><span class="hide-menu">@(((ClaimsIdentity)User.Identity).FindFirst("FirstName")?.Value)</span></a>
             <ul aria-expanded="false" class="collapse">
                 <li>
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <button type="submit" class="nav-link btn btn-link"><i class="fa fa-power-off"></i> Logout</button>
                     </form>
-@*                     <a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li> *@
             </ul>
         </li>
 
