@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamSuite.Contracts;
 
@@ -6,6 +7,7 @@ namespace TeamSuite.Web.Controllers.api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CheckListsController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

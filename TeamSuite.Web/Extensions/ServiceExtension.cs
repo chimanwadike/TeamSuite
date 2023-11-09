@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using TeamSuite.Contracts;
+using TeamSuite.Entities.Models;
 using TeamSuite.LoggerService;
 using TeamSuite.Repository;
 using TeamSuite.Service;
-using TeamSuite.Web.Models;
 
 namespace TeamSuite.Web.Extensions
 {

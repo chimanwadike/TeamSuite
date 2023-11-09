@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using TeamSuite.Entities.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        <li class="user-pro">
+            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="~/dist/images/user.jpg" alt="user-img" class="img-circle"><span class="hide-menu">@(((ClaimsIdentity)User.Identity).FindFirst("FirstName")?.Value)</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link"><i class="fa fa-power-off"></i> Logout</button>
+                    </form>
+            </ul>
+        </li>
+
+    }
+</ul>
+
+
