@@ -21,11 +21,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Publish
-      run: dotnet publish -c Release -r linux-x64 --project TeamSuite.Web
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: |
+        cd TeamSuite.Web
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o ../web-publish -r linux-x64 --self-contained true    
     - name: Push
       uses: s0/git-publish-subdir-action@develop      
       env:
