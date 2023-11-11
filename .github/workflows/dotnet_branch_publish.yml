@@ -23,7 +23,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Publish
-      run: dotnet publish -c Release -r linux-64 --project TeamSuite.Web
+      run: dotnet publish -c Release -r linux-x64 --project TeamSuite.Web
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Push
