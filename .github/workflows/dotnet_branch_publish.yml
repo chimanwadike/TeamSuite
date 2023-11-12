@@ -1,0 +1,35 @@
+# This workflow will publish the master branch assets to production
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: |
+        cd TeamSuite.Web
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o ../web-publish -r linux-x64 --self-contained true        
+    - name: Deploy to my EC2 instance
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        SOURCE: "./web-publish"
+        REMOTE_HOST: "ec2-18-237-73-228.us-west-2.compute.amazonaws.com"
+        REMOTE_USER: "ubuntu"
+        TARGET: "/home/ubuntu/ts"

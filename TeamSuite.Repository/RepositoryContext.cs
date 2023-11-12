@@ -10,7 +10,7 @@ using TeamSuite.Entities.Models;
 
 namespace TeamSuite.Repository;
 
-public class RepositoryContext : IdentityDbContext
+public class RepositoryContext : IdentityDbContext<ApplicationUser>
 {
     public RepositoryContext(DbContextOptions options) : base(options) { }
 
