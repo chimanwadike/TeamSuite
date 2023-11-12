@@ -20,6 +20,10 @@ namespace TeamSuite.Web.Controllers.api
         [HttpGet]
         public IActionResult Get(string checklistFormId)
         {
+            _serviceManager
+               .CheckListReportService
+               .GenerateTodayCheckList(Guid.Parse(checklistFormId));
+
             var checklist = _serviceManager
                 .CheckListReportService
                 .GetTodayCheckList(Guid.Parse(checklistFormId));
